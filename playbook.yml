@@ -21,6 +21,11 @@
       mode: 0644
       owner: tomcat8
       
+  - name: Restart tomcat
+    service:
+      name: tomcat8
+      state: restarted
+      
   - name: Unpack war file
     unarchive:
       src: /var/lib/tomcat8/webapps/openmrs.war
@@ -30,7 +35,11 @@
       owner: tomcat8
       group: tomcat8
       
-  - name: Restart tomcat
-    service:
-      name: tomcat8
-      state: restarted
+  - name: Create OpenMRS directory
+    file:
+      path: /var/lib/OpenMRS
+      owner: tomcat8
+      group: tomcat8
+      state: directory
+      mode: 0755
+      
