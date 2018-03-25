@@ -1,0 +1,14 @@
+---
+
+- hosts: openmrs-servers
+  become: true
+  
+  tasks:
+  - name: Install apt dependencies
+    apt:
+      name: "{{item}}"
+      state: present
+      update_cache: yes
+    with_items:
+      - apache2
+                
