@@ -12,4 +12,25 @@
     with_items:
       - apache2
       - tomcat8
-                
+      - unzip
+      
+  - name: Download war file
+    get_url:
+      url: https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Platform_2.1.2/openmrs.war
+      dest: /var/lib/tomcat8/webapps/openmrs.war
+      mode: 0644
+      owner: tomcat8
+      
+  - name: Unpack war file
+    unarchive:
+      src: /var/lib/tomcat8/webapps/openmrs.war
+      dest: /var/lib/tomcat8/webapps/openmrs/
+      copy: no
+      mode: 0755
+      owner: tomcat8
+      group: tomcat8
+      
+  - name: Restart tomcat
+    service:
+      name: tomcat8
+      state: restarted
