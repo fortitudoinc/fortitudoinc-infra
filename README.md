@@ -1,20 +1,13 @@
 # Fortitudo OpenMRS Infrastructure
 
-This repo documents the Fortitudo OpenMRS infrastructure as an ansible playbook tested on a vagrant vm. The playbook may also be used to configure arbitrary Ubuntu servers as Fortitudo OpenMRS servers
+This repo documents the Fortitudo OpenMRS infrastructure as an ansible playbook tested against docker containers. The playbook may also be used to configure arbitrary Ubuntu servers as Fortitudo OpenMRS servers
 
 ## Dependencies
-- Vagrant (for testing only)
+- Docker (for testing only)
 - Ansible
 
 ## Usage
 
-First-time:
 ```bash
-vagant up --provision
-```
-
-To reset and test from a clean state:
-```bash
-vagrant destroy
-vagrant up --provision
+ansible-playbook playbook.yml --extra-vars "testing=true"
 ```

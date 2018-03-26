@@ -8,8 +8,6 @@
       when: "{{ testing | default('false') }}"
       docker_service:
         project_name: refapp-docker
-        project_src: ./
-        build: yes
         definition:
           version: '3'
 
