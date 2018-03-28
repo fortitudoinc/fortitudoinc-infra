@@ -1,1 +1,0 @@
-All contents of this directory are gitignore'd
