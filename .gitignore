@@ -1,3 +1,6 @@
 .vagrant
 playbook.retry
 *.log
+
+ssh-keys/*
+!ssh-keys/README.md
