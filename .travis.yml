@@ -5,4 +5,4 @@ services: docker
 
 script: 
   - ssh-keygen -f ssh-keys/id_rsa -t rsa -N ''
-  - docker-compose up --build
+  - docker-compose up --build -d
