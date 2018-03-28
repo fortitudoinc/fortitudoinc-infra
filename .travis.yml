@@ -1,4 +1,8 @@
 dist: trusty
 sudo: required
 
-script: echo 'hello, world'
+services: docker
+
+script: 
+  - ssh-keygen -f ssh-keys/id_rsa -t rsa -N ''
+  - docker-compose up --build
