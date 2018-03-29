@@ -1,0 +1,17 @@
+- name: set mysql config options
+  debconf: 
+    name: mysql-server-5.6
+    question: "{{item}}"
+    value: root # TODO: make this a variable
+    vtype: password
+  with_items:
+    - root_password
+    - root_password_again
+
+- name: install mysql-56 and dependencies
+  apt: 
+    name: mysql-server-5.6
+    state: present
+    update_cache: yes
+    
+    
