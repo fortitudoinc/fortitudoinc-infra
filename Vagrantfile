@@ -9,6 +9,9 @@ Vagrant.configure("2") do |config|
         web.vm.box = "ubuntu/xenial64"
         web.vm.hostname = "web"
         web.vm.network "private_network", ip: "192.168.50.10"
+        web.vm.network "forwarded_port", guest: 80, host: 10080
+        web.vm.network "forwarded_port", guest: 8080, host: 18080
+        web.vm.network "forwarded_port", guest: 443, host: 10443
     end
     
     config.vm.provision "ansible" do |ansible|
