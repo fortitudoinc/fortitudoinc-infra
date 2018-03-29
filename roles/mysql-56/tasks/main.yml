@@ -8,10 +8,42 @@
     - root_password
     - root_password_again
 
-- name: install mysql-56 and dependencies
+- name: Install mysql-56 and dependencies
   apt: 
-    name: mysql-server-5.6
+    name: "{{item}}"
     state: present
     update_cache: yes
+  with_items:
+    - mysql-server-5.6
+    - libmysqlclient-dev
+    - python-pip
+    - python-dev
+    
+- name: Install python mysql libraries
+  pip:
+    name: MySQL-python
+    
+- name: Allow remote access to db
+  mysql_user:
+    name: openmrs
+    host: '%'
+    password: openmrs # TODO: make this a variable
+    priv: '*.*:ALL'
+    state: present
+    
+- name: Copy mysql config
+  copy:
+    src: configs/my.cnf
+    dest: /etc/mysql/my.cnf
+    owner: root
+    group: root
+    mode: 0644
+    
+- name: Restart mysql
+  service:
+    name: mysql
+    state: restarted
+
+# TODO: if db connection errors come up later may have to add short pause here
     
     

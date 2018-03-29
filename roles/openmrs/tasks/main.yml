@@ -5,35 +5,44 @@
     update_cache: yes
   with_items:
     - apache2
-    - tomcat8
+    - tomcat7
     - unzip
-    
+
+- name: Copy custom tomcat settings
+  copy:
+    src: configs/tomcat7-defaults
+    dest: /etc/default/tomcat7
+    owner: root
+    group: root
+    mode: 0644
+        
 - name: Download war file
   get_url:
-    url: https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Platform_2.1.2/openmrs.war
-    dest: /var/lib/tomcat8/webapps/openmrs.war
+    url: https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Reference_Application_2.6.1/openmrs.war
+    dest: /var/lib/tomcat7/webapps/openmrs.war
     mode: 0644
-    owner: tomcat8
+    owner: tomcat7
+    timeout: 60 # Sourceforge is slow
     
 - name: Restart tomcat
   service:
-    name: tomcat8
+    name: tomcat7
     state: restarted
     
 - name: Unpack war file
   unarchive:
-    src: /var/lib/tomcat8/webapps/openmrs.war
-    dest: /var/lib/tomcat8/webapps/openmrs/
+    src: /var/lib/tomcat7/webapps/openmrs.war
+    dest: /var/lib/tomcat7/webapps/openmrs/
     copy: no
     mode: 0755
-    owner: tomcat8
-    group: tomcat8
+    owner: tomcat7
+    group: tomcat7
     
 - name: Create OpenMRS directory
   file:
     path: /var/lib/OpenMRS
-    owner: tomcat8
-    group: tomcat8
+    owner: tomcat7
+    group: tomcat7
     state: directory
     mode: 0755
     
