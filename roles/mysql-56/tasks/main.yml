@@ -33,7 +33,7 @@
     
 - name: Copy mysql config
   copy:
-    src: configs/my.cnf
+    src: my.cnf
     dest: /etc/mysql/my.cnf
     owner: root
     group: root

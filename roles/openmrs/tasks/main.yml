@@ -10,7 +10,7 @@
 
 - name: Copy custom tomcat settings
   copy:
-    src: configs/tomcat7-defaults
+    src: tomcat7-defaults
     dest: /etc/default/tomcat7
     owner: root
     group: root
