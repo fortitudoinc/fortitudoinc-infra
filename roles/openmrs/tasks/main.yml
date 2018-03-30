@@ -54,7 +54,7 @@
     return_content: yes
   register: response
   
-- name: debug initialsetup
+- name: debug initialsetup 1
   debug: msg={{initial_response}}
   
 - name: Run initial setup wizard (step 2)
@@ -71,10 +71,10 @@
       Cookie: "{{initial_response.set_cookie}}"
   register: response
 
-- name: debug initialsetup
+- name: debug initialsetup 2
   debug: msg={{response}}
       
-- name: Run initial setup wizard (step 2)
+- name: Run initial setup wizard (step 3)
   uri:
     url: http://localhost:8080/openmrs/initialsetup
     method: POST
@@ -88,11 +88,11 @@
       Cookie: "{{initial_response.set_cookie}}"
   register: response
   
-- name: debug initialsetup
+- name: debug initialsetup 3
   debug: msg={{response}}
   
 # TODO: db connection needs to be in variables rather than hard-coded
-- name: Run initial setup wizard (step 3)
+- name: Run initial setup wizard (step 4)
   uri:
     url: http://localhost:8080/openmrs/initialsetup
     method: POST
@@ -112,10 +112,10 @@
       Cookie: "{{initial_response.set_cookie}}"
   register: response
   
-  - name: debug initialsetup
-    debug: msg={{response}}
+- name: debug initialsetup 4
+  debug: msg={{response}}
     
-- name: Run initial setup wizard (step 4)
+- name: Run initial setup wizard (step 5)
   uri:
     url: http://localhost:8080/openmrs/initialsetup
     method: POST
@@ -135,10 +135,10 @@
       Cookie: "{{initial_response.set_cookie}}"
   register: response
   
-- name: debug initialsetup
+- name: debug initialsetup 5
   debug: msg={{response}}
   
-- name: Run initial setup wizard (step 5)
+- name: Run initial setup wizard (step 6)
   uri:
     url: http://localhost:8080/openmrs/initialsetup
     method: POST
@@ -153,10 +153,10 @@
       Cookie: "{{initial_response.set_cookie}}"
   register: response
   
-- name: debug initialsetup
+- name: debug initialsetup 7
   debug: msg={{response}}
   
-- name: Run initial setup wizard (step 6)
+- name: Run initial setup wizard (step 7)
   uri:
     url: http://localhost:8080/openmrs/initialsetup
     method: POST
@@ -171,10 +171,10 @@
       Cookie: "{{initial_response.set_cookie}}"
   register: response
   
-- name: debug initialsetup
+- name: debug initialsetup 8
   debug: msg={{response}}
   
-- name: Run initial setup wizard (step 7)
+- name: Run initial setup wizard (step 8)
   uri:
     url: http://localhost:8080/openmrs/initialsetup
     method: POST
@@ -191,10 +191,10 @@
       Cookie: "{{initial_response.set_cookie}}"
   register: response
 
-- name: debug initialsetup
+- name: debug initialsetup 9
   debug: msg={{response}}
   
-- name: Run initial setup wizard (step 8)
+- name: Run initial setup wizard (step 9)
   uri:
     url: http://localhost:8080/openmrs/initialsetup
     method: POST
