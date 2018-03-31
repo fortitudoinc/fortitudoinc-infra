@@ -2,7 +2,7 @@
   debconf: 
     name: mysql-server-5.6
     question: "{{item}}"
-    value: root # TODO: make this a variable
+    value: "{{ db_root_password | default('root') }}"
     vtype: password
   with_items:
     - root_password
@@ -25,9 +25,9 @@
     
 - name: Allow remote access to db
   mysql_user:
-    name: openmrs
+    name: "{{ db_user | default('openmrs') }}"
     host: '%'
-    password: openmrs # TODO: make this a variable
+    password: "{{ db_password | default('openmrs') }}"
     priv: '*.*:ALL'
     state: present
     

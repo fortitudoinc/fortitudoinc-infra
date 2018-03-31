@@ -21,6 +21,7 @@
     group: root
     mode: 0644
         
+# TODO: make version into variable
 - name: Download war file
   get_url:
     url: https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Reference_Application_2.6.1/openmrs.war
@@ -54,5 +55,10 @@
 # TODO: Make these options ansible (vault?) variables    
 - name: Execute setup script
   script: >
-   scripts/openmrs-initial-setup.py 192.168.50.11 openmrs openmrs yes Admin123
+   scripts/openmrs-initial-setup.py 
+   {{ mysql_host | default('192.168.50.11') }} 
+   {{ db_user | default('openmrs') }} 
+   {{ db_password | default('openmrs') }} 
+   {{ demo_data | default('yes') }} 
+   {{ admin_password | default('Admin123') }}
     
