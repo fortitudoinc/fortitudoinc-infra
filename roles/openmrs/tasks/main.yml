@@ -50,6 +50,9 @@
     group: tomcat7
     state: directory
     mode: 0755
-    
+
+# TODO: Make these options ansible (vault?) variables    
 - name: Execute setup script
-  script: scripts/openmrs-initial-setup.py
+  script: >
+   scripts/openmrs-initial-setup.py 192.168.50.11 openmrs openmrs yes Admin123
+    
