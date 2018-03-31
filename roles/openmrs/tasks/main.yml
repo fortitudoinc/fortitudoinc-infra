@@ -8,17 +8,26 @@
     - tomcat7
     - unzip
     - python3-pip
+    - libapache2-mod-jk
 
 - name: Install python libraries for scripts
   pip:
     name: requests
     
-- name: Copy custom tomcat settings
+- name: Copy custom tomcat defaults
   copy:
     src: tomcat7-defaults
     dest: /etc/default/tomcat7
     owner: root
     group: root
+    mode: 0644
+    
+- name: Copy custom tomcat server settings
+  copy:
+    src: tomcat-server.xml
+    dest: /etc/tomcat7/server.xml
+    owner: root
+    group: tomcat7
     mode: 0644
         
 # TODO: make version into variable
@@ -61,4 +70,47 @@
    {{ db_password | default('openmrs') }} 
    {{ demo_data | default('yes') }} 
    {{ admin_password | default('Admin123') }}
+   
+- name: enable apache mods
+  apache2_module:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - rewrite
+    - jk
+    - ssl
+    
+- name: Copy mod_jk conf
+  file:
+    src: mod-jk.properties
+    path: /etc/libapache2-mod-jk/workers.properties
+    owner: root
+    group: root
+    mode: 0644
+    
+- name: Copy apache site conf
+  template:
+    src: "{{item}}"
+    dest: "/etc/apache2/sites-available/{{ server_name }}-{{item}}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - apache-site.conf
+    - apache-site-ssl.conf
+  
+- name: Disable default site
+  command: a2dissite 000-default
+  
+- name: Enable sites
+  command: "a2ensite {{item}}"
+  with_items:
+    - "{{ server_name }}-apache-site"
+    - "{{ server_name }}-apache-site-ssl"
+    
+- name: Restart apache
+  service:
+    name: apache2
+    state: restarted
+    
     

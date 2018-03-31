@@ -21,6 +21,10 @@ sess = requests.session()
 resp = sess.get(SETUP_URL)
 assert resp.status_code == 200
 
+# Be idempotent! Detect if site already installed
+if "** NOTE TO DEVELOPERS  **" in resp.text:
+    print("[*] Site appears to be installed already, skipping initial setup.")
+
 # Step 2: set lang
 post_wrapper(sess, {
     'page': 'chooselang.vm',

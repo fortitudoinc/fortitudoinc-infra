@@ -19,7 +19,11 @@ Vagrant.configure("2") do |config|
         ansible.groups = {
             "openmrs-databases" => ["db"],
             "openmrs-servers" => ["web"],
-            "openmrs-servers:vars" => {"ansible_python_interpreter" => "/usr/bin/python3"}
+            "openmrs-servers:vars" => {
+                "ansible_python_interpreter" => "/usr/bin/python3",
+                "server_name" => "localhost",
+                "ssl_port" => "10443"
+            }
         }
     end
     
