@@ -1,0 +1,23 @@
+all:
+  children:
+    openmrs-servers:
+      hosts:
+        10.0.0.10
+      vars:
+        mysql_host: 10.0.0.20
+        demo_data: no
+        admin_password: anotherstorngpassword
+        server_name: openmrs.example.com
+        ssl_port: 443
+        
+    openmrs-databases:
+      host:
+        10.0.0.20
+      vars:
+        db_root_password: anevenstrongerpassword
+                
+  vars:
+    ansible_user: ubuntu
+    ansible_python_interpreter: /usr/bin/python3
+    db_user: openmrs
+    db_password: astrongpassword
