@@ -1,3 +1,7 @@
+- name: Add additional repositories
+  apt_repository:
+    repo: ppa:certbot/certbot
+
 - name: Install apt dependencies
   apt:
     name: "{{item}}"
@@ -9,6 +13,7 @@
     - unzip
     - python3-pip
     - libapache2-mod-jk
+    - python-certbot-apache
 
 - name: Install python libraries for scripts
   pip:
@@ -98,9 +103,17 @@
   with_items:
     - apache-site.conf
     - apache-site-ssl.conf
+    
+- name: Copy apache ports conf
+  template:
+    src: apache-ports.conf
+    dest: /etc/apache2/ports.conf
+    owner: root
+    group: root
+    mode: 0644
   
-- name: Disable default site
-  command: a2dissite 000-default
+- name: Disable any default/previously configured sites
+  command: a2dissite *
   
 - name: Enable sites
   command: "a2ensite {{item}}"
@@ -113,4 +126,7 @@
     name: apache2
     state: restarted
     
+- name: Configure ssl with certbot
+  command: certbot --apache -d {{ server_name }} -n --agree-tos --email {{ admin_email }}
+
     

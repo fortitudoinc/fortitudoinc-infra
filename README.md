@@ -8,7 +8,7 @@ This repo documents the Fortitudo OpenMRS infrastructure as an ansible playbook 
 - Vagrant w/4GB RAM allocatable to VMs (for testing only)
 - Ansible
 
-## Usage (testing)
+## Usage (local testing)
 
 First run:
 ```bash
@@ -19,5 +19,19 @@ Reset:
 ```bash
 vagrant destroy
 vagrant up --provision
+```
+
+## Usage (remote deployment)
+
+Create an inventory file (use inventory-example.yml as a guide) and run:
+
+```bash
+ansible-playbook playbook.yml -i your-inventory.yml
+```
+
+Or use an encrypted inventory:
+
+```bash
+ansible-playbook playbook.yml -i inventory-staging.yml --ask-vault-pass
 ```
 
