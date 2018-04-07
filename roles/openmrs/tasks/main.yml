@@ -65,6 +65,21 @@
     group: tomcat7
     state: directory
     mode: 0755
+    
+- name: Remove default index.html
+  file:
+    path: /var/lib/tomcat7/webapps/ROOT/index.html
+    state: absent
+    
+- name: Redirect root requests to openmrs site
+  copy:
+    src: index.jsp
+    dest: /var/lib/tomcat7/webapps/ROOT/index.jsp
+    owner: root
+    group: root
+    mode: 0644
+    
+
 
 # TODO: Make these options ansible (vault?) variables    
 - name: Execute setup script
@@ -75,15 +90,6 @@
    {{ db_password | default('openmrs') }} 
    {{ demo_data | default('yes') }} 
    {{ admin_password | default('Admin123') }}
-   
-- name: enable apache mods
-  apache2_module:
-    name: "{{item}}"
-    state: present
-  with_items:
-    - rewrite
-    - jk
-    - ssl
     
 - name: Copy mod_jk conf
   file:
@@ -93,6 +99,9 @@
     group: root
     mode: 0644
     
+- name: Configure ssl with certbot
+  command: certbot --apache -d {{ server_name }} -n --agree-tos --email {{ admin_email }}
+  
 - name: Copy apache site conf
   template:
     src: "{{item}}"
@@ -115,18 +124,23 @@
 - name: Disable any default/previously configured sites
   command: a2dissite *
   
+- name: enable apache mods
+  apache2_module:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - rewrite
+    - jk
+    - ssl
+    
 - name: Enable sites
   command: "a2ensite {{item}}"
   with_items:
     - "{{ server_name }}-apache-site"
     - "{{ server_name }}-apache-site-ssl"
-    
+
 - name: Restart apache
   service:
     name: apache2
     state: restarted
-    
-- name: Configure ssl with certbot
-  command: certbot --apache -d {{ server_name }} -n --agree-tos --email {{ admin_email }}
-
     

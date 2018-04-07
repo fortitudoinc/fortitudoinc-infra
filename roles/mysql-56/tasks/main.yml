@@ -30,6 +30,7 @@
     password: "{{ db_password | default('openmrs') }}"
     priv: '*.*:ALL'
     state: present
+  notify: Restart mysql
     
 - name: Copy mysql config
   copy:
@@ -38,11 +39,7 @@
     owner: root
     group: root
     mode: 0644
-    
-- name: Restart mysql
-  service:
-    name: mysql
-    state: restarted
+  notify: Restart mysql
 
 # TODO: if db connection errors come up later may have to add short pause here
     
