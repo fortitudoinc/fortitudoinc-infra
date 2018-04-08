@@ -7,6 +7,7 @@ all:
         mysql_host: 10.0.0.20
         demo_data: no
         admin_password: anotherstorngpassword
+        admin_email: example@mail.example.com
         server_name: openmrs.example.com
         ssl_port: 443
         
