@@ -36,14 +36,39 @@
     mode: 0644
         
 # TODO: make version into variable
-- name: Download war file
+- name: Create OpenMRS directories
+  file:
+    path: "{{item}}"
+    owner: tomcat7
+    group: tomcat7
+    state: directory
+    mode: 0755
+  with_items:
+    - /var/lib/OpenMRS
+    - /var/lib/tomcat7/webapps/openmrs
+    
+- name: Download OpenMRS bundle
   get_url:
-    url: https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Reference_Application_2.6.1/openmrs.war
+    url: https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_2.4/openmrs-2.4-modules.zip
+    dest: /root/openmrs-2.4-modules.zip
+    #mode: 0644
+    #owner: tomcat7
+    timeout: 60 # Sourceforge is slow
+
+- name: Unzip OpenMRS Bundle
+  unarchive:
+    src: /root/openmrs-2.4-modules.zip
+    dest: /root
+    remote_src: yes
+    
+- name: Move war to tomcat dir
+  copy:
+    src: /root/referenceapplication-package-2.4/openmrs-1.11.6.war
     dest: /var/lib/tomcat7/webapps/openmrs.war
     mode: 0644
     owner: tomcat7
-    timeout: 60 # Sourceforge is slow
-    
+    remote_src: yes
+
 - name: Restart tomcat
   service:
     name: tomcat7
@@ -58,13 +83,12 @@
     owner: tomcat7
     group: tomcat7
     
-- name: Create OpenMRS directory
-  file:
-    path: /var/lib/OpenMRS
-    owner: tomcat7
-    group: tomcat7
-    state: directory
-    mode: 0755
+# Unfortunately no good way to make copy with_fileglob work remotely
+- name: Install omods
+  shell: "cp /root/referenceapplication-package-2.4/*.omod /var/lib/OpenMRS/modules/"
+
+- name: Chnage omod permissions
+  shell: "chown tomcat7:tomcat7 /var/lib/OpenMRS/modules/*"
     
 - name: Remove default index.html
   file:
