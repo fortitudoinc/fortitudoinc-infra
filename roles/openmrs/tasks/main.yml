@@ -51,8 +51,6 @@
   get_url:
     url: https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_2.4/openmrs-2.4-modules.zip
     dest: /root/openmrs-2.4-modules.zip
-    #mode: 0644
-    #owner: tomcat7
     timeout: 60 # Sourceforge is slow
 
 - name: Unzip OpenMRS Bundle
