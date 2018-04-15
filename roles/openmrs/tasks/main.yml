@@ -81,9 +81,25 @@
     owner: tomcat7
     group: tomcat7
     
+- name: Ensure modules dir exists
+  file:
+    path: /var/lib/OpenMRS/modules
+    state: directory
+    owner: tomcat7
+    group: tomcat7
+    mode: 0755
+    
 # Unfortunately no good way to make copy with_fileglob work remotely
 - name: Install omods
   shell: "cp /root/referenceapplication-package-2.4/*.omod /var/lib/OpenMRS/modules/"
+  
+- name: Install patientlist omod
+  get_url:
+    url: https://github.com/fortitudoinc/patientlist/raw/master/omod/target/patientlist-1.0.0-SNAPSHOT.omod
+    dest: /var/lib/OpenMRS/modules/patientlist-1.0.0-SNAPSHOT.omod
+    owner: tomcat7
+    group: tomcat7
+    mode: 0644
 
 - name: Chnage omod permissions
   shell: "chown tomcat7:tomcat7 /var/lib/OpenMRS/modules/*"
