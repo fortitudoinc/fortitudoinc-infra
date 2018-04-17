@@ -126,7 +126,7 @@
    {{ mysql_host | default('192.168.50.11') }} 
    {{ db_user | default('openmrs') }} 
    {{ db_password | default('openmrs') }} 
-   {{ demo_data | default('yes') }} 
+   {{ demo_data | default('no') }} 
    {{ admin_password | default('Admin123') }}
     
 - name: Copy mod_jk conf
