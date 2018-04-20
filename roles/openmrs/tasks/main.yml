@@ -12,6 +12,7 @@
     - tomcat7
     - unzip
     - python3-pip
+    - python-pip
     - libapache2-mod-jk
     - python-certbot-apache
 
