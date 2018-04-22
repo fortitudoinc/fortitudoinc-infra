@@ -18,7 +18,13 @@
 
 - name: Install python libraries for scripts
   pip:
-    name: requests
+    name: "{{item}}"
+  with_items:
+    - requests
+    - urllib3
+    - pyOpenSSL
+    - ndg-httpsclient
+    - pyasn1
     
 - name: Copy custom tomcat defaults
   copy:

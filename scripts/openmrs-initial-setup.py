@@ -4,6 +4,7 @@ import requests
 import sys
 
 SETUP_URL = 'http://localhost:8080/openmrs/initialsetup'
+TRY_COUNT = 10  # Number of times to try to get the initialsetup page while waiting for server to come online
 
 def post_wrapper(s, post_data):
     resp = s.post(SETUP_URL, data=post_data)
@@ -18,7 +19,15 @@ ADMIN_PASSWORD = sys.argv[5]
 sess = requests.session()
 
 # Step 1: get cookie
-resp = sess.get(SETUP_URL)
+
+for idx in range(0, TRY_COUNT):
+    resp = sess.get(SETUP_URL)
+    
+    if resp.status_code == 200:
+        break
+    else:
+        sleep(1)
+    
 assert resp.status_code == 200
 
 # Be idempotent! Detect if site already installed
