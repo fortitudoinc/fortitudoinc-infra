@@ -1,9 +1,2 @@
-.vagrant
-playbook.retry
-*.log
-
-ssh-keys/*
-!ssh-keys/README.md
-
 *.env
 !example.env

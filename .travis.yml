@@ -1,5 +1,9 @@
-dist: trusty
 sudo: required
 
-script: 
-  - echo 'holder...'
+services:
+  - docker
+  
+script:
+  - source example.env
+  - docker-compose up -d
+  - docker ps
