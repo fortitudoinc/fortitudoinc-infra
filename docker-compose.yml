@@ -13,7 +13,7 @@ services:
   refapp:
     depends_on:
       - db
-    image: openmrs/openmrs-reference-application-distro
+    image: isears/refapp-production:2.7.0
     ports:
       - 8080:8080
     links:
@@ -25,3 +25,4 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_CREATE_TABLES: ${DB_CREATE_TABLES}
       MODULE_WEB_ADMIN: ${MODULE_WEB_ADMIN}
+      OPENMRS_ADMIN_PASSWORD: ${OPENMRS_ADMIN_PASSWORD}
