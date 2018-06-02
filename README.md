@@ -9,7 +9,7 @@ This repo contains the Fortitudo OpenMRS docker deployment
 
 ## Usage
 
-First run:
+Testing:
 ```bash
 docker-compose up
 ```

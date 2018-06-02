@@ -9,7 +9,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-      
+
   refapp:
     depends_on:
       - db
@@ -30,9 +30,23 @@ services:
   proxy:
     depends_on:
       - refapp
-    image: httpd:latest
+    image: linuxserver/letsencrypt
     ports:
       - 80:80
       - 443:443
     links:
       - refapp:reference_application
+
+    environment:
+      URL: openmrs-staging.callnigeriandoc.com
+      VALIDATION: http
+      PGID: 1000
+      PUID: 1000
+      TZ: America/New_York
+      EMAIL: isaac.j.sears@gmail.com
+
+    volumes:
+      - ./proxy/default.conf:/config/nginx/site-confs/default.conf
+
+volumes:
+  nginx-proxy-conf:
