@@ -26,3 +26,13 @@ services:
       DB_CREATE_TABLES: ${DB_CREATE_TABLES}
       MODULE_WEB_ADMIN: ${MODULE_WEB_ADMIN}
       OPENMRS_ADMIN_PASSWORD: ${OPENMRS_ADMIN_PASSWORD}
+
+  proxy:
+    depends_on:
+      - refapp
+    image: httpd:latest
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - refapp:reference_application
