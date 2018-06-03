@@ -20,7 +20,7 @@ The software stack consists of three docker containers: an nginx TLS proxy (with
 
 ```bash
 source example-new-db.env
-docker-compose up -d -f new-db.yml
+docker-compose -f new-db.yml up -d
 ```
 
 ### Load sql dumpfile into a container
@@ -29,14 +29,14 @@ docker-compose up -d -f new-db.yml
 mkdir db
 mv /path/to/your/dump.sql ./db/
 source example-reuse-db.env
-docker-compose up -d -f load-db.yml
+docker-compose -f load-db.yml up -d
 ```
 
 ### Use an existing database on the network
 
 ```bash
 source example-existing-db.env
-docker-compose up -d -f existing-db.yml
+docker-compose -f existing-db.yml up -d
 ```
 
 ## Options

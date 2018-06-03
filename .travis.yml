@@ -5,5 +5,5 @@ services:
   
 script:
   - source example-new-db.env
-  - docker-compose up -d -f new-db.yml
+  - docker-compose -f new-db.yml up -d
   - docker ps
