@@ -16,7 +16,7 @@ The software stack consists of three docker containers: an nginx TLS proxy (with
 
 ## Usage
 
-### Option #1: Create new database in a container
+### Option #1: create new database in a container
 
 ```bash
 source example-new-db.env
