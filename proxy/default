@@ -1,4 +1,3 @@
-
 # main server block
 server {
 	listen 443 ssl default_server;
