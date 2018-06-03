@@ -4,6 +4,6 @@ services:
   - docker
   
 script:
-  - source example.env
+  - source example-new-db.env
   - docker-compose up -d
   - docker ps

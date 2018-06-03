@@ -20,12 +20,12 @@ Testing:
 ```bash
 cd fortitudoinc-infra
 source example.env
-docker-compose up
+docker-compose up -d
 ```
 
 ## Options
 
-See example.env for an example configuration.
+See `example-new-db.env` or `example-saved-db.env` for an example configuration for a new database or a saved database, respectively.
 
 ### MySQL Options
 - MYSQL_ROOT_PASSWORD: password for the root user of the mysql 5.6 database

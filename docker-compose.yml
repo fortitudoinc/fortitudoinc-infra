@@ -10,6 +10,9 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
 
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+
   refapp:
     depends_on:
       - db
@@ -44,9 +47,11 @@ services:
       PUID: 1000
       TZ: ${TZ}
       EMAIL: ${EMAIL}
+      STAGING: ${STAGING}
 
     volumes:
       - ./proxy/default:/config/nginx/site-confs/default
 
 volumes:
+  database-startup:
   nginx-proxy-conf:
