@@ -38,12 +38,12 @@ services:
       - refapp:reference_application
 
     environment:
-      URL: openmrs-staging.callnigeriandoc.com
+      URL: ${URL}
       VALIDATION: http
       PGID: 1000
       PUID: 1000
-      TZ: America/New_York
-      EMAIL: isaac.j.sears@gmail.com
+      TZ: ${TZ}
+      EMAIL: ${EMAIL}
 
     volumes:
       - ./proxy/default:/config/nginx/site-confs/default
