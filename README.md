@@ -16,14 +16,14 @@ The software stack consists of three docker containers: an nginx TLS proxy (with
 
 ## Usage
 
-### Create new database in a container
+### Option #1: Create new database in a container
 
 ```bash
 source example-new-db.env
 docker-compose -f new-db.yml up -d
 ```
 
-### Load sql dumpfile into a container
+### Option #2: load sql dumpfile into a container
 
 ```bash
 mkdir db
@@ -32,16 +32,16 @@ source example-reuse-db.env
 docker-compose -f load-db.yml up -d
 ```
 
-### Use an existing database on the network
+### Option #3: use an existing database on the network
 
 ```bash
 source example-existing-db.env
 docker-compose -f existing-db.yml up -d
 ```
 
-## Options
+## Environment variables
 
-See `example-new-db.env` or `example-saved-db.env` for an example configuration for a new database or a saved database, respectively.
+See `example-*.env` files for examples of how to set up in each situation.
 
 ### MySQL Options
 - MYSQL_ROOT_PASSWORD: password for the root user of the mysql 5.6 database
