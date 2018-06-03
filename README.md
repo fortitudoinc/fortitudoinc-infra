@@ -16,11 +16,27 @@ The software stack consists of three docker containers: an nginx TLS proxy (with
 
 ## Usage
 
-Testing:
+### Create new database in a container
+
 ```bash
-cd fortitudoinc-infra
-source example.env
-docker-compose up -d
+source example-new-db.env
+docker-compose up -d -f new-db.yml
+```
+
+### Load sql dumpfile into a container
+
+```bash
+mkdir db
+mv /path/to/your/dump.sql ./db/
+source example-reuse-db.env
+docker-compose up -d -f load-db.yml
+```
+
+### Use an existing database on the network
+
+```bash
+source example-existing-db.env
+docker-compose up -d -f existing-db.yml
 ```
 
 ## Options
@@ -32,6 +48,7 @@ See `example-new-db.env` or `example-saved-db.env` for an example configuration 
 - MYSQL_DATABASE: A database to setup when creating the mysql container
 
 ### OpenMRS Options
+- DB_HOST: Address of database server (must specify if using existing-db.yml, ignored otherwise)
 - DB_DATABASE: The database used
 - DB_USERNAME: The username used to connect to the database container
 - DB_PASSWORD: The password used  to connect to the database container
