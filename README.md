@@ -6,7 +6,7 @@ This repo contains the Fortitudo OpenMRS docker deployment
 
 ## Overview
 
-The software stack consists of three docker containers: an nginx TLS proxy (with TLS certificates managed by letsencypt), a tomcat server with OpenMRS reference application installed, and a MySLQ 5.6 database backend.
+The software stack consists of three docker containers: an nginx TLS proxy (with TLS certificates managed by letsencypt), a tomcat server with OpenMRS reference application installed, and a MySQL 5.6 database backend.
 
 ![software stack](stack.png)
 
