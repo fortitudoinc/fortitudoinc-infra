@@ -4,6 +4,6 @@ services:
   - docker
   
 script:
-  - source example-new-db.env
+  - source environments/example-new-db.env
   - docker-compose -f new-db.yml up -d
   - docker ps
