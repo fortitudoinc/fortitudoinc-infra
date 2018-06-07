@@ -1,4 +1,5 @@
 *.env
-!example*.env
+!environments/example*.env
 .idea/
 *.sql
+.vscode
