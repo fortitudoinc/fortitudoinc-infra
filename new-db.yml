@@ -13,7 +13,7 @@ services:
   refapp:
     depends_on:
       - db
-    image: isears/refapp-production:2.7.0
+    build: ./refapp
     ports:
       - 8080:8080
     links:

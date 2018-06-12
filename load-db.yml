@@ -16,7 +16,7 @@ services:
   refapp:
     depends_on:
       - db
-    image: isears/refapp-production:2.7.0
+    build: ./refapp
     ports:
       - 8080:8080
     links:
@@ -29,9 +29,6 @@ services:
       DB_CREATE_TABLES: ${DB_CREATE_TABLES}
       MODULE_WEB_ADMIN: ${MODULE_WEB_ADMIN}
       OPENMRS_ADMIN_PASSWORD: ${OPENMRS_ADMIN_PASSWORD}
-
-    volumes:
-      - ./omods/patientlist-1.0.0-SNAPSHOT.omod:/usr/local/tomcat/.OpenMRS/modules/patientlist.omod
 
   proxy:
     depends_on:

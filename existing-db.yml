@@ -3,7 +3,7 @@ version: '2'
 services:
 
   refapp:
-    image: isears/refapp-production:2.7.0
+    build: ./refapp
     ports:
       - 8080:8080
     environment:
