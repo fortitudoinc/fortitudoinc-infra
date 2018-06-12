@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   db:
@@ -29,6 +29,9 @@ services:
       DB_CREATE_TABLES: ${DB_CREATE_TABLES}
       MODULE_WEB_ADMIN: ${MODULE_WEB_ADMIN}
       OPENMRS_ADMIN_PASSWORD: ${OPENMRS_ADMIN_PASSWORD}
+
+    volumes:
+      - ./omods/patientlist-1.0.0-SNAPSHOT.omod:/usr/local/tomcat/.OpenMRS/modules/patientlist.omod
 
   proxy:
     depends_on:

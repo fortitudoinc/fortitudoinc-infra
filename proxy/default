@@ -15,8 +15,12 @@ server {
 
 	client_max_body_size 0;
 
+	location / {
+		return 301 https://$http_host/openmrs$request_uri;
+	}
+
 	location /openmrs {
 		include /config/nginx/proxy.conf;
-		proxy_pass http://refapp:8080;
+		proxy_pass http://refapp:8080/openmrs;
 	}
 }
