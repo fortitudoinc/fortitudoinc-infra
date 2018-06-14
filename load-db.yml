@@ -17,8 +17,6 @@ services:
     depends_on:
       - db
     build: ./refapp
-    ports:
-      - 8080:8080
     links:
       - db:database
     environment:
@@ -28,7 +26,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_CREATE_TABLES: ${DB_CREATE_TABLES}
       MODULE_WEB_ADMIN: ${MODULE_WEB_ADMIN}
-      OPENMRS_ADMIN_PASSWORD: ${OPENMRS_ADMIN_PASSWORD}
+      OPENMRS_ADMIN_PASSWORD: unused  # Not necessary in the load-db context
 
   proxy:
     depends_on:

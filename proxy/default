@@ -24,3 +24,9 @@ server {
 		proxy_pass http://refapp:8080/openmrs;
 	}
 }
+
+# Redirect HTTP requests to HTTPS
+server {
+	listen 80;
+	return 301 https://$host/openmrs$request_uri;
+}

@@ -14,8 +14,6 @@ services:
     depends_on:
       - db
     build: ./refapp
-    ports:
-      - 8080:8080
     links:
       - db:database
     environment:
