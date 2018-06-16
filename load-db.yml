@@ -43,7 +43,7 @@ services:
 
     environment:
       URL: ${URL}
-      VALIDATION: http
+      VALIDATION: tls-sni
       PGID: 1000
       PUID: 1000
       TZ: ${TZ}
