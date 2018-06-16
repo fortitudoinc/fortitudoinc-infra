@@ -5,5 +5,6 @@ services:
   
 script:
   - source environments/example-saved-db.env
+  - wget https://github.com/fortitudoinc/patientlist2.6/raw/master/omod/target/patientlist-1.0.0-SNAPSHOT.omod -P ./refapp/omods/
   - docker-compose -f load-db.yml up -d
   - docker ps
