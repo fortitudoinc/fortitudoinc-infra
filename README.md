@@ -46,6 +46,7 @@ See `environments/` directory for examples of how to set up in each situation.
 ### MySQL Options
 - MYSQL_ROOT_PASSWORD: password for the root user of the mysql 5.6 database
 - MYSQL_DATABASE: A database to setup when creating the mysql container
+- BACKUPS_PATH: A directory to store daily backups, rotated montly (see util/backup.sh)
 
 ### OpenMRS Options
 - DB_HOST: Address of database server (must specify if using existing-db.yml, ignored otherwise)

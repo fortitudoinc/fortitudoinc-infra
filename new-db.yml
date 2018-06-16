@@ -9,6 +9,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+    
+    volumes:
+      - ./util/backup.sh:/etc/cron.daily/backup.sh
+      - ${BACKUPS_PATH}:/backups
 
   refapp:
     depends_on:
@@ -46,6 +50,3 @@ services:
 
     volumes:
       - ./proxy/default:/config/nginx/site-confs/default
-
-volumes:
-  nginx-proxy-conf:
