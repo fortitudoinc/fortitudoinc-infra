@@ -19,6 +19,8 @@ The software stack consists of three docker containers: an nginx TLS proxy (with
 ### Option #1: create new database in a container
 
 ```bash
+mkdir /path/to/your/backups
+export BACKUPS_PATH=/path/to/your/backups
 source environments/example-new-db.env
 docker-compose -f new-db.yml up -d
 ```
@@ -26,6 +28,8 @@ docker-compose -f new-db.yml up -d
 ### Option #2: load sql dumpfile into a container
 
 ```bash
+mkdir /path/to/your/backups
+export BACKUPS_PATH=/path/to/your/backups
 mkdir db
 mv /path/to/your/dump.sql ./db/
 source environments/example-reuse-db.env
