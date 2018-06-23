@@ -1,9 +1,12 @@
-sudo: required
+# sudo: required
 
-services:
-  - docker
+# services:
+#   - docker
   
+# script:
+#   - source environments/example-new-db.env
+#   - docker-compose -f new-db.yml up -d
+#   - docker ps
+
 script:
-  - source environments/example-new-db.env
-  - docker-compose -f new-db.yml up -d
-  - docker ps
+  - echo "holder"
