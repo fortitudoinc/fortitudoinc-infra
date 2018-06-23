@@ -3,3 +3,4 @@
 .idea/
 *.sql
 .vscode
+refapp/omods/*.omod
