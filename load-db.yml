@@ -10,10 +10,11 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
 
+    labels:
+      - backup_target
+
     volumes:
       - ./db:/docker-entrypoint-initdb.d
-      - ./util/backup.sh:/etc/cron.daily/backup.sh
-      - ${BACKUPS_PATH}:/backups
 
   refapp:
     depends_on:
