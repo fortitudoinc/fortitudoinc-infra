@@ -50,7 +50,6 @@ See `environments/` directory for examples of how to set up in each situation.
 ### MySQL Options
 - MYSQL_ROOT_PASSWORD: password for the root user of the mysql 5.6 database
 - MYSQL_DATABASE: A database to setup when creating the mysql container
-- BACKUPS_PATH: A directory to store daily backups, rotated montly (see util/backup.sh)
 
 ### OpenMRS Options
 - DB_HOST: Address of database server (must specify if using existing-db.yml, ignored otherwise)
@@ -68,3 +67,7 @@ See `environments/` directory for examples of how to set up in each situation.
     - If false: will use a valid certificate, but will be rate-limited by letsencrypt (use this option for production deployments)
 - TZ: optional time zone
 - EMAIL: an email address for the server administrator (for letsencrypt security notices, etc.)
+
+### Backup Options (optional, for use with backup.py as cron job)
+- BACKUP_PATH: Path to a directory used to store db backups 
+- BACKUP_RETENTION: Number of backups to hold on the file system before deleting the oldest
