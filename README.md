@@ -43,6 +43,11 @@ source environments/example-existing-db.env
 docker-compose -f existing-db.yml up -d
 ```
 
+## Adding custom modules (omod files)
+
+To launch the reference application with custom modules, drop your .omod files into `./refapp/omods/`. In addition, append the `--build` flag to the docker-compose command, i.e. `docker-compose -f existing-db.yml up -d --build`
+
+
 ## Environment variables
 
 See `environments/` directory for examples of how to set up in each situation.
