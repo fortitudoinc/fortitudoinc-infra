@@ -30,6 +30,7 @@ services:
       DB_CREATE_TABLES: ${DB_CREATE_TABLES}
       MODULE_WEB_ADMIN: ${MODULE_WEB_ADMIN}
       OPENMRS_ADMIN_PASSWORD: unused  # Not necessary in the load-db context
+      TZ: ${TZ}
 
   proxy:
     depends_on:

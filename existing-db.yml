@@ -12,6 +12,7 @@ services:
       DB_CREATE_TABLES: ${DB_CREATE_TABLES}
       MODULE_WEB_ADMIN: ${MODULE_WEB_ADMIN}
       OPENMRS_ADMIN_PASSWORD: ${OPENMRS_ADMIN_PASSWORD}
+      TZ: ${TZ}
 
   proxy:
     depends_on:
