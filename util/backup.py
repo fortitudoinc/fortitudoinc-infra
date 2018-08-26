@@ -47,7 +47,7 @@ def do_backup(db_container):
         os.environ['DB_DATABASE']
     )
 
-    exit_code, res = db_container.exec_run(cmd)
+    exit_code, res = db_container.exec_run(cmd, stderr=False)
     assert exit_code == 0, 'Bad exit code while trying to dump db: {}'.format(exit_code)
 
     print('Saving backup to {}'.format(backup_path))
