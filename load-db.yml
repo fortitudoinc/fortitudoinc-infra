@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   db:
@@ -20,10 +20,9 @@ services:
     depends_on:
       - db
     build: ./refapp
-    links:
-      - db:database
+    image: 127.0.0.1:5000/refapp
     environment:
-      DB_HOST: database
+      DB_HOST: db
       DB_DATABASE: ${DB_DATABASE}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
@@ -39,8 +38,6 @@ services:
     ports:
       - 80:80
       - 443:443
-    links:
-      - refapp:reference_application
 
     environment:
       URL: ${URL}
