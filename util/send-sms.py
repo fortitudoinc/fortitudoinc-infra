@@ -14,7 +14,7 @@ def usage():
 def main():
     sns = boto3.client('sns')
 
-    # TODO: check length
+    # Testing on US number indicates that long messages (greater than 140 characters) should be automatically broken up
     resp = sns.publish(
         PhoneNumber=sys.argv[1],
         Message=sys.argv[2],
