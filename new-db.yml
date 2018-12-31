@@ -1,5 +1,5 @@
 version: '2'
-
+# Start a container with a new database
 services:
   db:
     image: mysql:5.6
