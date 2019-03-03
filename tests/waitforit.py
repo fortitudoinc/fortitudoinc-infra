@@ -11,7 +11,7 @@ Wait for refapp to be ready, fail if exceed TIMEOUT # of attempts
 """
 
 BASE_URL = "http://localhost:8080/openmrs"
-TIMEOUT = 100
+TIMEOUT = 300 # Wait ~ 5 min for everything to come up
 
 attempts = 0
 ready = False
@@ -30,7 +30,7 @@ while not ready:
         else:
             attempts += 1
             time.sleep(1)
-            print("[*] Waiting on refapp to get to ready state...".format(attempts, TIMEOUT))
+            print("[*] Waiting on refapp to get to ready state, attempt {}/{}".format(attempts, TIMEOUT))
 
     except requests.exceptions.ConnectionError:
         attempts += 1
