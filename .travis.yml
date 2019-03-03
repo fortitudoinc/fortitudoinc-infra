@@ -1,12 +1,18 @@
-# sudo: required
+sudo: required
 
-# services:
-#   - docker
-  
-# script:
-#   - source environments/example-new-db.env
-#   - docker-compose -f new-db.yml up -d
-#   - docker ps
+language: python
+
+services:
+  - docker
+
+install:
+  - pip install -r ./tests/requirements.txt
+
+before_script:
+  - source environments/example-new-db.env
+  - docker-compose up -d
+  - docker ps
+  - ./tests/waitforit.py
 
 script:
-  - echo "holder"
+  - ./tests/frontpage.py
