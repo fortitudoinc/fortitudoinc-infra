@@ -33,7 +33,10 @@ services:
       MODULE_WEB_ADMIN: ${MODULE_WEB_ADMIN}
       OPENMRS_ADMIN_PASSWORD: ${OPENMRS_ADMIN_PASSWORD}  # Not necessary in the load-db context
       TZ: ${TZ}
+    volumes:
+      - document-upload:/usr/local/tomcat/.OpenMRS/Document
 
 volumes:
   openmrs-database:
+  document-upload:
 
