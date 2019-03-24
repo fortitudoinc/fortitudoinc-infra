@@ -1,5 +1,5 @@
 version: '2'
-# Load a DB dump into a new container from the db folder 
+
 services:
   db:
     image: mysql:5.6
@@ -14,12 +14,14 @@ services:
       - backup_target
 
     volumes:
-      - ./db:/docker-entrypoint-initdb.d
+      - openmrs-database:/var/lib/mysql
 
   refapp:
     depends_on:
       - db
     build: ./refapp
+    ports:
+      - 8080:8080
     links:
       - db:database
     environment:
@@ -29,28 +31,12 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_CREATE_TABLES: ${DB_CREATE_TABLES}
       MODULE_WEB_ADMIN: ${MODULE_WEB_ADMIN}
-      OPENMRS_ADMIN_PASSWORD: unused  # Not necessary in the load-db context
+      OPENMRS_ADMIN_PASSWORD: ${OPENMRS_ADMIN_PASSWORD}  # Not necessary in the load-db context
       TZ: ${TZ}
-
-  proxy:
-    depends_on:
-      - refapp
-    image: linuxserver/letsencrypt
-    ports:
-      - 80:80
-      - 443:443
-    links:
-      - refapp:reference_application
-
-    environment:
-      URL: ${URL}
-      VALIDATION: http
-      PGID: 1000
-      PUID: 1000
-      TZ: ${TZ}
-      EMAIL: ${EMAIL}
-      STAGING: ${STAGING}
-
     volumes:
-      - ./proxy/default:/config/nginx/site-confs/default
+      - document-upload:/usr/local/tomcat/.OpenMRS/Document
+
+volumes:
+  openmrs-database:
+  document-upload:
 

@@ -4,3 +4,4 @@
 *.sql
 .vscode
 refapp/omods/*.omod
+!refapp/omods/README.md
