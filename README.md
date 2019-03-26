@@ -13,40 +13,37 @@ The software stack consists of three docker containers: an nginx TLS proxy (with
 ## Requirements
 - docker
 - docker-compose
+- python3 (optional)
 
 ## Usage
 
-### Option #1: create new database in a container
+The first-time run of this infrastructure is slightly different in that the `DB_CREATE_TABLES` environment variable must be set to true (as in `environments/example-new-db.env`). This lets the refapp container know that it has to do a little extra installation work because it is using a completely blank database.
+
+Thereafter, the `DB_CREATE_TABLES` environment must be set to false (as in `environments/example.env`) to let the refapp know that those tables already exist.
+
+### First-time setup
 
 ```bash
-mkdir /path/to/your/backups
-export BACKUPS_PATH=/path/to/your/backups
 source environments/example-new-db.env
-docker-compose -f new-db.yml up -d
+docker-compose up --build -d
 ```
 
-### Option #2: load sql dumpfile into a container
+### Subsequent updates/operations
 
 ```bash
-mkdir /path/to/your/backups
-export BACKUPS_PATH=/path/to/your/backups
-mkdir db
-mv /path/to/your/dump.sql ./db/
-source environments/example-reuse-db.env
-docker-compose -f load-db.yml up -d
-```
-
-### Option #3: use an existing database on the network
-
-```bash
-source environments/example-existing-db.env
-docker-compose -f existing-db.yml up -d
+source environments/example.env
+docker-compose down
+# Make some changes..
+docker-compose up --build -d
 ```
 
 ## Adding custom modules (omod files)
 
 To launch the reference application with custom modules, drop your .omod files into `./refapp/omods/`. In addition, append the `--build` flag to the docker-compose command, i.e. `docker-compose -f existing-db.yml up -d --build`
 
+## Backups
+
+If the backup environment variables are pointing to a valid directory (see below), the backup script under `util/backup.py` can be used to automatically take a database snapshot. This can be setup in a cronjob, for example, to do automated database backups.
 
 ## Environment variables
 
