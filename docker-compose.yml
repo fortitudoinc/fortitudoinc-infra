@@ -16,7 +16,7 @@ services:
       STAGING: ${STAGING}
     volumes:
       - proxy:/config
-      - ./proxy/openmrs.conf:/config/nginx/proxy-confs/openmrs.conf
+      - ./proxy/openmrs.subfolder.conf:/config/nginx/proxy-confs/openmrs.subfolder.conf
     ports:
       - 443:443
       - 80:80 #optional
