@@ -39,7 +39,7 @@ docker-compose up --build -d
 
 ## Adding custom modules (omod files)
 
-To launch the reference application with custom modules, drop your .omod files into `./refapp/omods/`. In addition, append the `--build` flag to the docker-compose command, i.e. `docker-compose -f existing-db.yml up -d --build`
+To launch the reference application with custom modules, drop your .omod files into `./refapp/omods/`. In addition, append the `--build` flag to the docker-compose command, i.e. `docker-compose up -d --build`
 
 ## Backups
 
