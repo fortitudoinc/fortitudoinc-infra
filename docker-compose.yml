@@ -1,6 +1,27 @@
 version: '2'
 
 services:
+  proxy:
+    image: linuxserver/letsencrypt
+    container_name: proxy
+    cap_add:
+      - NET_ADMIN
+    environment:
+      URL: ${URL}
+      VALIDATION: http
+      PGID: 1000
+      PUID: 1000
+      TZ: ${TZ}
+      EMAIL: ${EMAIL}
+      STAGING: ${STAGING}
+    volumes:
+      - proxy:/config
+      - ./proxy/openmrs.conf:/config/nginx/proxy-confs/openmrs.conf
+    ports:
+      - 443:443
+      - 80:80 #optional
+    restart: unless-stopped
+
   db:
     image: mysql:5.6
     command:
@@ -39,4 +60,5 @@ services:
 volumes:
   openmrs-database:
   document-upload:
+  proxy:
 
