@@ -1,0 +1,6 @@
+[submodule "external-modules/Document-Module"]
+	path = external-modules/Document-Module
+	url = https://github.com/fortitudoinc/Document-Module
+[submodule "external-modules/patientlist2.6"]
+	path = external-modules/patientlist2.6
+	url = https://github.com/fortitudoinc/patientlist2.6
