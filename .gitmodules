@@ -4,3 +4,6 @@
 [submodule "external-modules/patientlist2.6"]
 	path = external-modules/patientlist2.6
 	url = https://github.com/fortitudoinc/patientlist2.6
+[submodule "external-modules/openmrs-module-telemedicine-consult"]
+	path = external-modules/openmrs-module-telemedicine-consult
+	url = https://github.com/CKWC/openmrs-module-telemedicine-consult
