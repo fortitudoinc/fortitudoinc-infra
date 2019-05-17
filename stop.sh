@@ -5,4 +5,4 @@
 source environments/production.env
 
 # replace with the appropriate .yml if not using load-db configuration
-docker-compose -f load-db.yml down
+docker-compose down

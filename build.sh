@@ -1,5 +1,5 @@
 # Build refapp image, including omods from submodules
-DOCKER_IMAGE_NAME=fortitudoinc-infra-refapp
+DOCKER_IMAGE_NAME=fortitudoinc-infra_refapp
 
 docker image rm $DOCKER_IMAGE_NAME
 
