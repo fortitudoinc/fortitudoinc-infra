@@ -11,7 +11,7 @@ Wait for refapp to be ready, fail if exceed TIMEOUT # of attempts
 """
 
 BASE_URL = "http://localhost:8080/openmrs"
-TIMEOUT = 300 # Wait ~ 5 min for everything to come up
+TIMEOUT = 600 # Wait ~ 10 min for everything to come up
 
 attempts = 0
 ready = False
