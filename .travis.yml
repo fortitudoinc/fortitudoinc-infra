@@ -16,5 +16,5 @@ before_script:
   - docker ps
   - ./tests/waitforit.py
 
-script:
-  - ./tests/frontpage.py
+# script:
+#   - ./tests/frontpage.py
