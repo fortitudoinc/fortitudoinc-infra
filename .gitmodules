@@ -7,3 +7,6 @@
 [submodule "external-modules/openmrs-module-telemedicine-consult"]
 	path = external-modules/openmrs-module-telemedicine-consult
 	url = https://github.com/CKWC/openmrs-module-telemedicine-consult
+[submodule "external-modules/email"]
+	path = external-modules/email
+	url = https://github.com/fortitudoinc/email
