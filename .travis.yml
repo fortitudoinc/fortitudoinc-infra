@@ -14,7 +14,7 @@ before_script:
   - ./build.sh
   - docker-compose up -d
   - docker ps
-  - ./tests/waitforit.py
+#   - ./tests/waitforit.py
 
-# script:
-#   - ./tests/frontpage.py
+# # script:
+# #   - ./tests/frontpage.pys
