@@ -63,6 +63,9 @@ services:
       - 3000:3000
     links:
       - refapp:refapp
+    environment:
+      MOBILE_USER: ${MOBILE_USER}
+      MOBILE_PASSWORD: ${MOBILE_PASSWORD}
 
 volumes:
   openmrs-database:
