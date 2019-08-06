@@ -64,7 +64,7 @@ services:
     links:
       - refapp:refapp
     environment:
-      MOBILE_USER: ${MOBILE_USER}
+      MOBILE_USER: ${MOBILE_USERNAME}
       MOBILE_PASSWORD: ${MOBILE_PASSWORD}
 
 volumes:
