@@ -61,6 +61,8 @@ services:
     build: ./mobile-gateway/
     ports:
       - 3000:3000
+    links:
+      - refapp:refapp
 
 volumes:
   openmrs-database:
