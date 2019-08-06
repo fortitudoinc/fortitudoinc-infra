@@ -3,7 +3,6 @@ version: '2'
 services:
   proxy:
     image: linuxserver/letsencrypt
-    container_name: proxy
     cap_add:
       - NET_ADMIN
     environment:
