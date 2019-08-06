@@ -10,3 +10,6 @@
 [submodule "external-modules/email"]
 	path = external-modules/email
 	url = https://github.com/fortitudoinc/email
+[submodule "mobile-gateway"]
+	path = mobile-gateway
+	url = https://github.com/openmrs/openmrs-contrib-telemedicine-proxy

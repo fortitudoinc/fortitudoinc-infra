@@ -57,6 +57,11 @@ services:
     volumes:
       - document-upload:/usr/local/tomcat/.OpenMRS/Document
 
+  mobile-gateway:
+    build: ./mobile-gateway/
+    ports:
+      - 3000:3000
+
 volumes:
   openmrs-database:
   document-upload:
