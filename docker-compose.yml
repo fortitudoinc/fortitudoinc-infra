@@ -13,6 +13,7 @@ services:
       TZ: ${TZ}
       EMAIL: ${EMAIL}
       STAGING: ${STAGING}
+      EXTRA_DOMAINS: ${EXTRA_DOMAINS}
     volumes:
       - proxy:/config
       - ./proxy/openmrs.conf:/config/nginx/site-confs/default
