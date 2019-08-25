@@ -66,6 +66,8 @@ services:
     environment:
       MOBILE_USERNAME: ${MOBILE_USERNAME}
       MOBILE_PASSWORD: ${MOBILE_PASSWORD}
+      EMAIL_USERNAME: ${EMAIL_USERNAME}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
 
 volumes:
   openmrs-database:
