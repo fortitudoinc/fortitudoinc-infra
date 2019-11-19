@@ -30,12 +30,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-
     labels:
       - backup_target
-
     volumes:
       - openmrs-database:/var/lib/mysql
+    restart: unless-stopped
 
   refapp:
     depends_on:
@@ -56,6 +55,7 @@ services:
       TZ: ${TZ}
     volumes:
       - document-upload:/usr/local/tomcat/.OpenMRS/Document
+    restart: unless-stopped
 
   mobile-gateway:
     build: ./mobile-gateway/
@@ -68,6 +68,7 @@ services:
       MOBILE_PASSWORD: ${MOBILE_PASSWORD}
       EMAIL_USERNAME: ${EMAIL_USERNAME}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+    restart: unless-stopped
 
 volumes:
   openmrs-database:
