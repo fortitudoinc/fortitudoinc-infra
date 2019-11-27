@@ -4,6 +4,7 @@ echo "Building mobile gateway..."
 cd mobile-gateway/
 ./gradlew build
 
+cd -
 
 # Build refapp image, including omods from submodules
 echo "Building refapp modules..."
