@@ -58,7 +58,9 @@ services:
     restart: unless-stopped
 
   mobile-gateway:
-    build: ./mobile-gateway/
+    depends_on:
+      - refapp
+    build: ./mobile-gateway
     ports:
       - 3000:3000
     links:

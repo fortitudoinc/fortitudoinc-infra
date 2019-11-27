@@ -1,7 +1,12 @@
-# Build refapp image, including omods from submodules
-DOCKER_IMAGE_NAME=fortitudoinc-infra_refapp
+# Build mobile gateway
+echo "Building mobile gateway..."
 
-docker image rm $DOCKER_IMAGE_NAME
+cd mobile-gateway/
+./gradlew build
+
+
+# Build refapp image, including omods from submodules
+echo "Building refapp modules..."
 
 for module in $(ls ./external-modules/)
 do
@@ -10,5 +15,3 @@ do
     cd -
     cp ./external-modules/$module/omod/target/*.omod ./refapp/omods/
 done
-
-docker build ./refapp/ -t $DOCKER_IMAGE_NAME

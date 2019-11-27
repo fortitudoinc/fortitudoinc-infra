@@ -13,3 +13,6 @@
 [submodule "external-modules/openmrs-branding"]
 	path = external-modules/openmrs-branding
 	url = https://github.com/fortitudoinc/openmrs-branding
+[submodule "mobile-gateway"]
+	path = mobile-gateway
+	url = https://github.com/fortitudoinc/mobile-gateway-spring
